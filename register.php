@@ -106,7 +106,7 @@
             />
             <button type="submit">Registruotis</button>
             <div style="text-align: center">
-                <a href="login.php">Jei turite paskyrą- prisijunkite čia</a>
+                <a href="logging.php">Jei turite paskyrą- prisijunkite čia</a>
             </div>
         </form>
     </div>

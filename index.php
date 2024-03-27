@@ -107,17 +107,17 @@ if (isset($_POST["logout"])) {
    
         </div>
         <!-- Replace your quiz link section in index.php with the following code -->
-<div class="quiz-link">
-    <a href="quiz.php?lang=english">
+        <div class="quiz-link">
+    <a href="english.php">
         <img src="./photos/english.jpeg" alt="English">
     </a>
-    <a href="quiz.php?lang=german">
+    <a href="german.php">
         <img src="./photos/germany.png" alt="German">
     </a>
-    <a href="quiz.php?lang=spanish">
+    <a href="spanish.php">
         <img src="./photos/spanish.jpeg" alt="Spanish">
     </a>
-    <a href="quiz.php?lang=french">
+    <a href="france.php">
         <img src="./photos/france.png" alt="French">
     </a>
 </div>

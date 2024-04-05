@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Words</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,25 +68,24 @@
             cursor: pointer;
         }
         .back-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 5px 10px;
-    background-color: #337ab7;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            background-color: #337ab7;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-.back-btn:hover {
-    background-color: #286090;
-}
+        .back-btn:hover {
+            background-color: #286090;
+        }
     </style>
-    
 </head>
 <body>
 <div class="wrapper">
-<a href="../index.php" class="back-btn">Grįžti atgal</a> 
+    <a href="../index.php" class="back-btn">Grįžti atgal</a>
     <div class="container">
         <?php
         require_once 'controllerEnglish.php';
@@ -95,13 +95,36 @@
     </div>
     <div class="buttons">
         <button onclick="reshuffle()">Išmaišyti</button>
-        <button onclick="showHints()">Užuomena</button>
+        <button class="btn btn-primary" onclick="showHints()">Užuomina</button>
     </div>
     <button class="logout-btn" onclick="logout()">Atsijungti</button>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="hintsModal" tabindex="-1" role="dialog" aria-labelledby="hintsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hintsModalLabel">Užuominos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="hintsText">
+                <!-- Čia bus rodomos užuomenos -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Uždaryti</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     const words = document.querySelectorAll('.word');
-    
+
     let selectedWords = [];
 
     words.forEach(word => {
@@ -167,16 +190,22 @@
             1: "Vaisiai",
             2: "Būdai, kaip pasisveikinti",
             3: "Spalvos",
-            4: "Gyvunai"
+            4: "Gyvūnai"
         };
 
-        let hintsText = "Kategorijos:\n";
+        let hintsText = "<h3>Kategorijos:</h3><ul>";
 
         Object.keys(categories).forEach(category => {
-            hintsText += `${category}: ${categories[category]}\n`;
+            hintsText += `<li><strong>${categories[category]}</strong>: ${category}</li>`;
         });
 
-        alert(hintsText);
+        hintsText += "</ul>";
+
+        const hintsContent = document.getElementById('hintsText');
+        hintsContent.innerHTML = hintsText;
+
+        // Rodo modalį
+        $('#hintsModal').modal('show');
     }
 
     function logout() {
